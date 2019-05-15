@@ -129,7 +129,7 @@ pub trait NextParams: private::Sealed + Clone {
 /**
 A single node address.
 */
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct NodeAddress(Arc<str>);
 
 impl AsRef<str> for NodeAddress {
