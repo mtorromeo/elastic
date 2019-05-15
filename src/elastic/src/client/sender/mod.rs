@@ -28,7 +28,9 @@ pub use self::async::*;
 pub use self::params::*;
 pub use self::sync::*;
 
+use std::char::ParseCharError;
 use std::marker::PhantomData;
+use std::str::FromStr;
 use std::sync::Arc;
 use uuid::Uuid;
 
@@ -144,6 +146,14 @@ where
 {
     fn from(address: T) -> Self {
         NodeAddress(address.into())
+    }
+}
+
+impl FromStr for NodeAddress {
+    type Err = ParseCharError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(NodeAddress(s.into()))
     }
 }
 
